@@ -9,7 +9,7 @@ const {
 
 const BASIC_CODE = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
 const AUTH_TOKEN = `Bearer ${BASIC_CODE}`;
-const NOW_PLAYING_ENDPOINT = "v1/me/player/currently-playing";
+const NOW_PLAYING_ENDPOINT = "https://api.spotify.com/v1/me/player/currently-playing";
 const RECENTLY_PLAYED_ENDPOINT = "https://api.spotify.com/v1/me/player/recently-played";
 const GET_TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 
