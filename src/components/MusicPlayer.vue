@@ -1,6 +1,6 @@
 <template>
-  <vs-row vs-justify="center">
-    <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="2.1">
+  <vs-row >
+    <vs-col >
       <vs-card class="cardx" id="border" :style="{ 'background-image': 'url(' + image + ')' }">
         <div id="image_block">
           <div id="spotify_icon">
