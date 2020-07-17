@@ -7,11 +7,11 @@
           <div id="progress_bar">
             <div id="current_time">{{ progress }}</div>
             <div id="total_time">{{ duration }}</div>
-            <div id="fill"></div>
+            <div id="fill" :style="{'width': progress_percentage + '%'}"></div>
           </div>
           <div id="artist">
-            <h2>{{ title }}</h2>
-            <h3>{{ artist }}</h3>
+            <h2 id="song_name">{{ title }}</h2>
+            <h3 id="artist_name">{{ artist }}</h3>
           </div>
         </div>
       </vs-card>
@@ -30,7 +30,8 @@ export default {
       artist: "Someone",
       image: require("@/assets/no_song.png"),
       progress: "3:00",
-      duration: "3:00"
+      duration: "3:00",
+      progress_percentage: 100
     };
   },
   mounted: async function() {
@@ -46,6 +47,8 @@ export default {
       this.image = spotify_data.album.images[1].url;
       this.duration = duration_min_sec;
       this.progress = progress_min_sec;
+      this.progress_percentage = Math.floor((spotify_data.progress_ms / spotify_data.duration_ms) * 100);
+      console.log(this.progress_percentage)
     } catch (error) {
       console.error(error);
     }
@@ -84,25 +87,24 @@ export default {
   }
 
   #info {
-    height: 80px;
+    height: 90px;
     width: 100%;
     position: absolute;
     bottom: 0;
     left: 0;
-    background: rgba(255, 255, 255, .85);
+    background: rgba(255, 255, 255, .87);
   }
 
   #progress_bar {
     height: 5px;
     width: 73%;
     margin: 6% auto;
-    background: lighten(#C0CFB2, 5%);
+    background-color: #C0CFB2;
     border-radius: 10px;
   }
 
   #fill {
     background-color: #8BA989;
-    width: 35%;
     height: 0.3rem;
     border-radius: 2px;
   }
@@ -112,11 +114,35 @@ export default {
     margin-top: -3px;
   }
 
+  #current_time, #total_time {
+    font-size: 10px;
+    position: absolute;
+    margin-top: -2px;
+  }
+
   #current_time {
     left: 15px;
   }
 
   #total_time {
     right: 15px;
+  }
+
+  #artist_name, #song_name {
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  #song_name {
+    font-size: 1em;
+    letter-spacing: 3px;
+    color: #49654D;
+  }
+
+  #artist_name {
+    font-size: .85em;
+    letter-spacing: 1.7px;
+    margin-top: 5px;
+    color: #8BA989;
   }
 </style>
