@@ -2,7 +2,11 @@
   <vs-row vs-justify="center">
     <vs-col type="flex" vs-justify="center" vs-align="center" vs-w="2.1">
       <vs-card class="cardx" id="border" :style="{ 'background-image': 'url(' + image + ')' }">
-        <div id="image_block"></div>
+        <div id="image_block">
+          <div id="spotify_icon">
+            <font-awesome-icon :icon="['fab', 'spotify']" size="2x"/>
+          </div>
+        </div>
         <div id="info">
           <div id="progress_bar">
             <div id="current_time">{{ progress }}</div>
@@ -84,6 +88,13 @@ export default {
     overflow: hidden;
     background-size: 300px;
     box-shadow: 6px 6px 15px rgba(0, 0, 0, .6);
+  }
+
+  #spotify_icon {
+    color: rgba(255, 255, 255, .90);
+    position: absolute;
+    right: 10px;
+    top: 10px;
   }
 
   #info {
