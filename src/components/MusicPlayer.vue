@@ -22,7 +22,6 @@
         title: "Hello World!"
       }
     }
-    
   }
 </script>
 
