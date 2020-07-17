@@ -1,24 +1,14 @@
 # spotify-now-playing
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Running it in local
 
-### Compiles and minifies for production
-```
-npm run build
-```
+This project is dockerized. Run the project with the following command:\
+`docker-compose up -d`
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Setting Environment
+This project uses two `ENV` variables:
+*	Project exposed port: `NODE_PORT`
+*	Spotify Client ID: `SPOTIFY_CLIENT_ID`
+*	Spotify Client Secret: `SPOTIFY_CLIENT_SECRET`
+*	Spotify Refresh Token: `SPOTIFY_REFRESH_TOKEN`
