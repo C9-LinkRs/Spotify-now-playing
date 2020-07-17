@@ -39,7 +39,7 @@ export async function nowPlaying() {
       headers: { Authorization: access_token }
     });
 
-    return (response.status === 200) ? response.data : {};
+    let
   } catch (error) {
     console.log("Spotify error", "retrieving now playing", error);
     return {};
@@ -54,7 +54,23 @@ export async function recentlyPlayed() {
       headers: { Authorization: access_token }
     });
 
-    return (response.status === 200) ? response.data : {};
+    const { items } = response.data;
+
+    if (response.status === 200 && items?.length) {
+      const {
+        album,
+        duration_ms,
+        name,
+        artists
+      } = items[items.length - 1].track;
+
+      return {
+        album,
+        duration_ms,
+        name,
+        artists
+      };
+    } else return {};
   } catch (error) {
     console.log("Spotify error", "retrieving recently played", error);
     return {};
