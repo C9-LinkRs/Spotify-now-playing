@@ -15,11 +15,22 @@
 </template>
 
 <script>
+
+  import axios from "axios";
+
   export default {
     name: "MusicPlayer",
     data: function() {
       return { 
         title: "Hello World!"
+      }
+    },
+    mounted: async function() {
+      try {
+        let response = await axios.get("http://localhost:3000/spotify");
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
       }
     }
   }
