@@ -4,8 +4,15 @@
       <vs-card class="cardx" id="border" :style="{ 'background-image': 'url(' + image + ')' }">
         <div id="image_block"></div>
         <div id="info">
-          <h2>{{ title }}</h2>
-          <h3>{{ artist }}</h3>
+          <div id="progress_bar">
+            <div id="current_time">{{ progress }}</div>
+            <div id="total_time">{{ duration }}</div>
+            <div id="fill"></div>
+          </div>
+          <div id="artist">
+            <h2>{{ title }}</h2>
+            <h3>{{ artist }}</h3>
+          </div>
         </div>
       </vs-card>
     </vs-col>
@@ -21,7 +28,9 @@ export default {
     return {
       title: "Fetching data...",
       artist: "Someone",
-      image: require("@/assets/no_song.png")
+      image: require("@/assets/no_song.png"),
+      progress: "3:00",
+      duration: "3:00"
     };
   },
   mounted: async function() {
@@ -29,23 +38,42 @@ export default {
       let response = await axios.get("http://localhost:3000/spotify");
 
       let spotify_data = response.data;
-      this.artist = spotify_data.artists[0].name;
+      let duration_min_sec = this.millisToMinutesAndSeconds(spotify_data.duration_ms);
+      let progress_min_sec = this.millisToMinutesAndSeconds(spotify_data.progress_ms);
+
+      this.artist = this.getArtists(spotify_data.artists);
       this.title = spotify_data.album.name;
       this.image = spotify_data.album.images[1].url;
+      this.duration = duration_min_sec;
+      this.progress = progress_min_sec;
     } catch (error) {
       console.error(error);
     }
   },
   methods: {
-    prepareImage: function(img) {
-      return require(img);
+    millisToMinutesAndSeconds: function(millis) {
+      let minutes = Math.floor(millis / 60000);
+      let seconds = ((millis % 60000) / 1000).toFixed(0);
+      return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    },
+    getArtists: function(array) {
+      let artists = "";
+      
+      for (let artist of array) {
+        artists += artist.name + ", ";
+      }
+      if (artists.length) return artists.slice(0, -2);
+      else return "Some artist";
     }
   }
 };
 </script>
 
 <style scoped>
+  @import url('https://fonts.googleapis.com/css?family=Questrial');
+
   #border {
+    font-family: 'Questrial', sans-serif;
     position: relative;
     margin: auto;
     width: 300px;
@@ -56,10 +84,39 @@ export default {
   }
 
   #info {
-    height: 115px;
+    height: 80px;
     width: 100%;
-    position: sticky;
+    position: absolute;
     bottom: 0;
-    background: rgba(255, 255, 255, .5);
+    left: 0;
+    background: rgba(255, 255, 255, .85);
+  }
+
+  #progress_bar {
+    height: 5px;
+    width: 73%;
+    margin: 6% auto;
+    background: lighten(#C0CFB2, 5%);
+    border-radius: 10px;
+  }
+
+  #fill {
+    background-color: #8BA989;
+    width: 35%;
+    height: 0.3rem;
+    border-radius: 2px;
+  }
+
+  #artist {
+    text-align: center;
+    margin-top: -3px;
+  }
+
+  #current_time {
+    left: 15px;
+  }
+
+  #total_time {
+    right: 15px;
   }
 </style>
