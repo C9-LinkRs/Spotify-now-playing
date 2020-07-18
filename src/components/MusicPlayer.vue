@@ -54,7 +54,7 @@ export default {
       );
 
       this.artist = this.getArtists(spotify_data.artists);
-      this.title = spotify_data.album.name;
+      this.title = spotify_data.name;
       this.image = spotify_data.album.images[1].url;
       this.duration = duration_min_sec;
       this.progress = progress_min_sec;
