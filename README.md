@@ -13,7 +13,8 @@ This project uses two `ENV` variables:
 *	Spotify Client Secret: `SPOTIFY_CLIENT_SECRET`
 *	Spotify Refresh Token: `SPOTIFY_REFRESH_TOKEN`
 
-## *Now playing* in Spotify
+## **Now playing** in Spotify
 <a href="https://spotify.linkrsplayground.duckdns.org">
-    <img src="https://spotify.linkrsplayground.duckdns.org" width="300" height="300" alt="Now Playing">
+  <!-- <img src="https://spotify.linkrsplayground.duckdns.org" width="300" height="300" alt="Now Playing"> -->
+  Check what i'm listening right now!
 </a>
