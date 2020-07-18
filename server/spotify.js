@@ -99,7 +99,7 @@ module.exports.recentlyPlayed = async () => {
         name,
         artists,
         external_urls
-      } = items[items.length - 1].track;
+      } = items[0].track;
 
       return {
         album: {
