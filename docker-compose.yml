@@ -6,15 +6,7 @@ services:
     build: ./
     restart: always
     env_file: .env
-    environment: 
-      VIRTUAL_HOST: ${VIRTUAL_HOST}
-      LETSENCRYPT_HOST: ${LETSENCRYPT_HOST}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    environment:
       NODE_ENV: production
-    expose:
-      - ${NODE_PORT}
-
-networks:
-  default:
-    external:
-      name: nginx-proxy
+    ports:
+      - ${NODE_PORT}:${NODE_PORT}
