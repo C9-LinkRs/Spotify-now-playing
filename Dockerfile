@@ -14,8 +14,6 @@ RUN npm run build
 RUN rm -rf ./build
 RUN rm -rf ./src
 
-ENV NODE_ENV=production
-
 EXPOSE ${NODE_PORT}
 
 CMD node server/server.js
