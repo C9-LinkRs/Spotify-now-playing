@@ -43,7 +43,7 @@ export default {
   },
   mounted: async function() {
     try {
-      let response = await axios.get("http://localhost:3000/api/spotify");
+      let response = await axios.get("/api/spotify");
 
       let spotify_data = response.data;
       let duration_min_sec = this.millisToMinutesAndSeconds(
