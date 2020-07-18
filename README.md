@@ -14,4 +14,4 @@ This project uses two `ENV` variables:
 *	Spotify Refresh Token: `SPOTIFY_REFRESH_TOKEN`
 
 ## ***Now playing*** in Spotify example
-![Preview](preview.png)
+![Preview](preview.PNG)
